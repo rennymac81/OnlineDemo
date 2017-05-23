@@ -1,0 +1,40 @@
+﻿
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.ErrorMsg))
+    {
+        <p class="redErrors" id="comboError" style="display:none">@ViewBag.ErrorMsg</p>
+    }
+    else
+    {
+        <div class="labelBackground1">
+            <p><span class="sampleTitle">Random Array:</span>&nbsp;@ViewBag.RandArrayView</p>
+        </div>
+
+        <p class="sampleTitle" style="padding-left:15px;margin-bottom:0px">Sum combinations</p>
+
+        if (ViewBag.ViewOfList.Count == 0)
+        {
+            <p class="redErrors">No Solution</p>
+        }
+        else
+        {
+            <div class="labelBackground1" style="margin-top:1px">
+            @foreach (var item in ViewBag.ViewOfList)
+            {
+                <p>@Html.DisplayFor(modelItem => item)</p>
+            }
+           </div>
+        }
+    }
+
+}
+
+<script>
+    $(function () {
+        var errorMsg = $("#comboError").text();
+        if (errorMsg != "") {
+            $("#comboError").fadeIn("fast");
+        }
+    }); 
+</script>

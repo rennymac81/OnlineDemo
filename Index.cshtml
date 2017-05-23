@@ -1,0 +1,364 @@
+﻿@{
+    ViewBag.Title = "Demo";
+}
+
+<div id="backGroundFade">
+<div id="collapsable">
+        <div class="img-container">
+            <div class="top-right2"><i class="fa fa-hashtag" aria-hidden="true"></i>myNotes</div>
+            <div class="top-right2"><i class="fa fa-github" aria-hidden="true"></i>Git Code</div>
+            <div class="top-right2"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact Me</div>
+            <a href="@Url.Action("About", "Home")"><img class="mySlideShow gitFiles" src="~/Content/Images/redNblack.jpg" /></a>
+            <a href="@Url.Action("About", "Home")"><img class="mySlideShow kyloRen" src="~/Content/Images/viewCode.jpg" /></a>
+            <a href="@Url.Action("Contact", "Home")"><img class="mySlideShow bat" src="~/Content/Images/contactMe.jpg" /></a>
+
+            <span tabindex="0" id="rightChev" class="glyphicon glyphicon-chevron-right right-center" onclick="plusOrMinusOne(+1)"></span>
+            <span tabindex="0" id="leftChev" class="glyphicon glyphicon-chevron-left left-center" onclick="plusOrMinusOne(-1)"></span>
+        </div>
+
+        <div class="jumbotron">
+            <h3 tabindex="0" id="welcomeHead" class="welcomeHdr"><i class="fa fa-smile-o" aria-hidden="true"></i>Welcome!</h3>
+            <p class="lead">Thanks for checking out my demo. Below are some samples to demonstrate my coding knowledge. Enjoy!</p>
+            @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+        </div>
+    </div>
+
+<div class="loadingGif" id="loadingGifId">
+    <img class="loadSize" src="~/Content/Images/loader.gif" />
+</div>
+
+<section style="display:none" id="recursionSec">
+    <div class="recursion-container">
+        <div class="row">
+            <div class="edge-padding col-md-8">
+                <h3 class="sampleTitle"><i class="fa fa-calculator" aria-hidden="true"></i>Recursion</h3>
+                <p>We will keep the target sum under 50 to avoid an overly extensive list of combinations. 
+                Each number in the array will be lower than the target sum, and can be used an unlimited amount of times. 
+                Duplicates are removed.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Target Sum</label>
+               <div class="form-inline">
+                 <input class="form-control" id="sumEntered" placeholder="Enter number 1-50" />
+                 <button class="customBtn" id="getCombos"><i class="fa fa-calculator" aria-hidden="true"></i>Run it</button>
+               </div>
+        </div>
+        <div id="loadCombos">
+
+        </div>
+    </div>
+    <hr class="end-display" />
+</section>
+
+<section style="display:none" id="ajaxAfterSubmit">
+    <div class="recursion-container">
+        <div class="row">
+            <div class="edge-padding col-md-8">
+                <h3 class="sampleTitle green-confirm"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span>Submitted Successfully!</h3>
+                <p>Your message was checked for validation, posted to the server, then displayed back to you for confirmation.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Details</label>
+               <div>
+                   <div id="loadAjaxForm">
+
+                   </div>
+               </div>
+        </div>  
+    </div>
+    <hr class="end-display" />
+</section>
+
+<section style="display:none;margin-top:10px" id="apiSection">
+    <div>
+        <div>
+               <div>
+                   <div id="loadApiData">
+
+                   </div>
+               </div>
+        </div>
+    </div>
+    <hr class="end-display" />
+</section>
+
+<div class="row">
+    <div class="col-md-4" id="recursionCol">
+        <h3 class="sampleTitle">Recursion</h3>
+        <p>
+            C# recursion algorithm which takes a given integer as a sum, 
+            generates an array of four random numbers, then finds all possible combinations of the array to reach the sum.
+        </p>
+        <p><button class="customBtn" id="recursionBtnId">
+              Ready
+           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </button></p>
+    </div>
+    <div class="col-md-4" id="ajaxCol">
+        <h3 class="sampleTitle">Submit with AJAX</h3>
+        <p>Demonstration of form submission with jQuery and AJAX for smooth transitions. 
+        Post a message to the server then receive confirmation without a page refresh.</p>
+        <p><button class="customBtn" id="ajaxBtnId">
+              Ready
+           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </button></p>
+    </div>
+    <div class="col-md-4" id="apiCol">
+        <h3 class="sampleTitle">Data API</h3>
+        <p>Data collection using Socrata Open Data API (SODA). 
+        This data contains police incident reports within Virginia Beach, VA between December 2016 and January 2017.</p>
+        <p><button class="customBtn" id="apiBtnId">
+              Ready
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </button></p>
+    </div>
+</div>
+</div>
+
+@* hidden modal for ajax form *@
+<div class="modal ajax-modal" id="ajaxModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closeModal" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title-text">Ajax Form</h4>
+            </div>
+            <div class="modal-body ajax-form-img">
+                <div class="form-group">
+                    <label style="color:white">No Refresh</label>
+                    <div class="form-inline">
+                        <textarea class="form-control multiLine" id="formTextId" rows="3" cols="35" placeholder="Enter anything here and submit…"></textarea>
+                        @*<input class="form-control multiLine" id="formText" placeholder="Enter anything here and submit…" />*@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-inline">
+                    <text class="redErrors" id="formTxtError" style="display:none;float:left;margin-top:15px"></text>
+                    <button class="customBtn" id="submitModalId">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="myModal" class="modal chartModal">
+    <!-- The Close Button -->
+    <inline class="closeImg" id="closeImg">&#x274C;</inline>
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content chartContent" id="img01" src="DescicriptionChartView">
+    <div id="modal-footer"></div>
+</div>
+<script>
+    var mySlidesIndex = 1;
+    var i;
+    var x = document.getElementsByClassName("mySlideShow");
+    var y = document.getElementsByClassName("top-right2");
+    var timedFunc;
+
+    processSlide(mySlidesIndex); // start slide show timer
+
+    // slide show click
+    function plusOrMinusOne(setBy) {
+        clearTimeout(timedFunc);
+        mySlidesIndex -= 1;
+        mySlidesIndex += setBy;
+        processSlide();
+    }
+
+    // timed slide show
+    function processSlide() {
+        if (mySlidesIndex > x.length) { mySlidesIndex = 1 }
+        if (mySlidesIndex < 1) { mySlidesIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+            y[i].style.display = "none";
+        }
+
+        x[mySlidesIndex - 1].style.display = "block";
+        y[mySlidesIndex - 1].style.display = "block";
+        mySlidesIndex++;
+        timedFunc = setTimeout(processSlide, 4000);
+    }
+
+    // show recursion
+    function showRecursion() {
+        $("#collapsable").hide("slow");
+        $("#ajaxAfterSubmit").hide();
+        $("#apiSection").hide();
+        window.scrollTo(0, 0);
+        $("#loadCombos").html("");
+        $("#sumEntered").val("");
+        $("#recursionSec").fadeIn("fast");
+        $("#recursionCol").addClass("demoFrame");
+        $("#ajaxCol").removeClass("demoFrame");
+        $("#apiCol").removeClass("demoFrame");
+        // add for api col
+    }
+
+    function showAjax() {
+        $("#ajaxModal").fadeIn("fast");
+        $("#recursionCol").removeClass("demoFrame");
+        $("#apiCol").removeClass("demoFrame");
+        $("#ajaxCol").addClass("demoFrame");
+        $("#backGroundFade").addClass("background-fade");
+        // add for api col
+    }
+
+    function hideAllButForm() {
+        $("#collapsable").hide();
+        $("#recursionSec").hide();
+        $("#apiSection").hide();
+        window.scrollTo(0, 0);
+        $("#ajaxAfterSubmit").fadeIn("slow");
+        // add for api col
+    }
+
+    function showApiList() {
+        $("#collapsable").hide();
+        $("#recursionSec").hide();
+        $("#ajaxAfterSubmit").hide();
+        window.scrollTo(0, 0);
+        $("#apiSection").show();
+    }
+
+    // slide show chevrons
+    $("#rightChev").click(function () {
+        setTimeout(function () { $("#welcomeHead").focus() }, 250);
+    });
+
+    $("#leftChev").click(function () {
+        setTimeout(function () { $("#welcomeHead").focus() }, 250);
+    });
+    // end slide show chevrons
+
+    // activate demo buttons
+    $("#recursionBtnId").click(function () {
+        showRecursion();
+    });
+
+    $("#ajaxBtnId").click(function () {
+        showAjax();
+    });
+    // end activate demo buttons
+
+    $("#closeModal").click(function () { // close modal
+        $("#formTxtError").fadeOut("fast");
+        $("#ajaxModal").fadeOut("fast");
+        $("#formTextId").val("");
+        $("#backGroundFade").removeClass("background-fade");
+    });
+
+    // Toggle red frames on recursion input focus
+    $("#sumEntered").on("focus", function () {
+        if (!$("#recursionCol").hasClass("demoFrame")) {
+            $("#recursionCol").addClass("demoFrame");
+            $("#ajaxCol").removeClass("demoFrame");
+            // add for api col
+        }
+    });
+
+    $("#getCombos").click(function () {
+        $("#getCombos").attr("disabled", true);
+
+        if (!$("#recursionCol").hasClass("demoFrame")) {
+            $("#recursionCol").addClass("demoFrame");
+            $("#ajaxCol").removeClass("demoFrame");
+            // add for api col
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Home/Recursion",
+            data: { "targetSum": $("#sumEntered").val() },
+            timeout: 1000,
+            success: function (data) {
+                $("#loadCombos").html(data);
+                $("#getCombos").removeAttr("disabled");
+            },
+            error: function (xmlhttprequest, textstatus, message) {
+                $("#loadingGifId").fadeIn("fast");
+                setTimeout(function () {
+                    $("#loadingGifId").fadeOut("fast");
+                    $("#loadCombos").html("<p class='redErrors' id='ajaxError'>The last recursion did not complete in time. Please Try again.</p>");
+                    $("#getCombos").removeAttr("disabled");
+                }, 1500);
+            } // end error
+        }); // end ajax
+    });
+
+    $("#formTextId").on("focus", function () { // remove error when click in text box
+        $("#formTxtError").fadeOut("fast");
+    });
+
+    $("#submitModalId").click(function () { // modal button click
+        var textSubmit = $("#formTextId").val();
+
+        $("#formTxtError").fadeOut("fast");
+
+        if (textSubmit == "") {
+            $("#formTxtError").html("Nothing was typed");
+            $("#formTxtError").fadeIn("fast");
+            return;
+        }
+        else if ((textSubmit.length > 100)) {
+            $("#formTxtError").html("Under 100 characters.");
+            $("#formTxtError").fadeIn("fast");
+            return;
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/Home/SubmitForm",
+                data: { "message": textSubmit },
+                timeout: 1000,
+                success: function (data) {
+                    $("#closeModal").click();
+                    $("#loadAjaxForm").html(data);
+                    hideAllButForm();
+                },
+                error: function (xmlhttprequest, textstatus, message) {
+                    $("#loadingGifId").fadeIn("fast");
+                    setTimeout(function () {
+                        $("#loadingGifId").fadeOut("fast");
+                        $("#formTxtError").html("Error. Try again.");
+                        $("#formTxtError").fadeIn("fast");
+                    }, 1500);
+                } // end error
+            }); // end ajax
+        }
+
+    });
+
+    $("#apiBtnId").click(function () {
+        $("#ajaxCol").removeClass("demoFrame");
+        $("#recursionCol").removeClass("demoFrame");
+        $("#apiCol").addClass("demoFrame");
+        
+        $("#loadingGifId").fadeIn("fast");
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/LoadOpenData",
+            timeout: 5000,
+            success: function (data) {
+                showApiList();
+                $("#loadingGifId").fadeOut("fast");
+                $("#loadApiData").html(data);
+            },
+            error: function (xmlhttprequest, textstatus, message) {
+                showApiList();
+                setTimeout(function () {
+                    $("#loadingGifId").fadeOut("fast");
+                    $("#apiSection").html("<p class='redErrors'>There was an error loading the data. Please try again.</p>");
+                }, 500);
+            } // end error
+        }); // end ajax
+    });
+
+</script>

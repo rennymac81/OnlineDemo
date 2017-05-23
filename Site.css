@@ -1,0 +1,503 @@
+﻿*{
+    word-wrap:break-word;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#demoLink:focus,
+#demoFire:focus{
+    text-shadow: 0px 0px 4px red;
+}
+
+#resumeLink:focus,
+#locsIcon:focus{
+    text-shadow: 0px 0px 4px #BA55D3;
+}
+
+#sabrLink:focus,
+#sabrIcon:focus{
+    text-shadow: 0px 0px 4px #87CEEB;
+}
+
+#contactLink:focus,
+#emailIcon:focus{
+    text-shadow: 0px 0px 4px #F0E68C;
+}
+
+#demoFire{
+    color: red;
+}
+
+#locsIcon{
+    color: #DDA0DD;
+}
+
+#sabrIcon{
+    color: #87CEEB;
+}
+
+#emailIcon{
+    color: #F0E68C;
+}
+
+.welcomeHdr{
+    font-weight: bold;
+    margin-top:2px;
+}
+
+.img-container{
+    position: relative;
+    /*display: inline-block;*/
+    margin-top: 2px;
+    height: 125px;
+    border-radius: 2px;
+    overflow:hidden;
+}
+
+.mySlideShow{
+    width: 100%;
+    min-width:700px;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
+}
+
+.labPic{
+    width: 50%;
+    min-width:500px;
+    border-top-right-radius:25px;
+}
+
+.mySlideShow:hover{
+    opacity:0.8;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.right-center{
+    position: absolute;
+    right: 1px;
+    margin-top: 45px;
+    z-index: 10;
+    font-size: x-large;
+    opacity: 0.4;
+    color: darkred;
+    background-color: white;
+    padding: 2px;
+}
+
+.top-right2{
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    z-index: 15;
+    font-size: 25px;
+    font-weight:bolder;
+    opacity: 0.9;
+    color: white;
+}
+
+.left-center{
+    position: absolute;
+    left: 1px;
+    margin-top: 45px;
+    z-index: 10;
+    font-size: x-large;
+    opacity: 0.4;
+    color: darkred;
+    background-color: white;
+    padding: 2px;
+}
+
+.right-center:hover,
+.left-center:hover{
+    cursor: pointer;
+    font-size: xx-large;
+    opacity: 0.6;
+}
+
+.right-center:focus,
+.left-center:focus{
+    cursor: pointer;
+    color:red;
+    font-size: xx-large;
+    opacity: 0.8;
+    outline:none !important;
+}
+
+#welcomeHead:focus{
+    outline:none !important;
+}
+
+.sampleTitle{
+    font-weight:bold;
+}
+
+.jumbotron {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 2px;
+  margin-top:2px;
+  color: inherit;
+  background: #B0C4DE; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(50deg, white, #B0C4DE); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(50deg, white, #B0C4DE); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(50deg, white, #B0C4DE); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(50deg, white, #B0C4DE);
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .container .jumbotron,
+  .container-fluid .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron h1,
+  .jumbotron .h1 {
+    font-size: 63px;
+  }
+}
+
+.navbar-inverse {
+  background: black; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(20deg, black, red); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(20deg, black, red); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(20deg, black, red); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(20deg, black, red);
+  border: none;
+}
+.navbar-inverse .navbar-brand {
+  padding-top: 14px;
+  color: #B0C4DE;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  color: #9d9d9d;
+}
+.navbar-inverse .navbar-nav > li > a {
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 13px;  
+  color: #B0C4DE;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding-right: 4px;
+  padding-left: 16px;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-nav > li > #sabrLink:hover,
+.navbar-inverse .navbar-nav > li > #sabrLink:focus{
+    padding-left: 20.5px;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav > li {
+    float: left;
+  }
+  .navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .customBtn{
+      margin-top: 0px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    width: 1450px !important;
+  }
+}
+
+.recursion-container{
+    width: 100%;
+    margin-right: 15px;
+    margin-left:15px;
+}
+
+.edge-padding{
+    padding-left:5px;
+    padding-right:75px;
+}
+
+.customBtn{
+    font-size:15px;
+    font-weight:bold;
+    outline:none !important;
+    border:none;
+    margin-top: 5px;
+    padding: 5px 16px 6px 15px;
+    border-radius: 4px;
+
+    background: #1E90FF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#E6E6FA 15%, #1E90FF ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#E6E6FA 15%, #1E90FF ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#E6E6FA 15%, #1E90FF ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#E6E6FA 15%, #1E90FF ); /* Standard syntax */
+}
+
+.customBtn2{
+    font-size:15px;
+    font-weight:bold;
+    outline:none !important;
+    border:none;
+    border-radius: 4px;
+    background: white;
+    color:#1E90FF;
+}
+
+.customBtn2:hover,
+.customBtn:hover{
+    background: #E6E6FA;
+    box-shadow: 0px 2px 2px 2px #888888;
+}
+
+.customBtn2:active,
+.customBtn:active{
+    box-shadow: 0px .5px .5px .5px #888888;
+    background:white;
+}
+
+.redErrors{
+    font-weight:bold;
+    color:red;
+    opacity:0.8;
+}
+
+.labelBackground1{
+  background: white; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(50deg, #B0C4DE, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(50deg, #B0C4DE, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(50deg, #B0C4DE, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(55deg, #B0C4DE, white);
+  border-radius:4px;
+  padding-left:15px;
+}
+
+.end-display{
+    background-size:20px;
+    border-width:4px;
+    border-radius:4px;
+    border-color: #DC143C;
+    opacity: 0.5;
+}
+
+.demoFrame{
+    border:solid;
+    border-radius:4px;
+    border-color: #DC143C;
+    border-width:1px;
+}
+
+.loadingGif{
+    display:none;
+    position:fixed;
+    z-index:10;
+    top:50%;
+    left:50%;
+}
+
+.loadSize{
+    width: 150px;
+    min-width: 100px;
+    margin-top: -10%; /* Changes with height. */
+    margin-left: -10%; /* Your width divided by 2. */
+}
+
+.modal-dialog{
+    width:100%;
+}
+@media (min-width: 500px) {
+  .modal-dialog {
+    width: 500px;
+    margin: 30px auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-dialog{
+    width:95%;
+}
+}
+
+.ajax-modal{
+    top: 55px !important;
+}
+
+.modal-content{
+    box-shadow: -1px 10px 20px 5px #888888 !important;
+}
+
+.modal-title-text{
+    font-weight:bold;
+    color:#191970;
+    margin-bottom:0px;
+}
+
+.modal-header{
+    padding-bottom:0px !important;
+}
+
+.ajax-form-img{
+    background-image: url("Images/i-should-buy-a-boat.jpg");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    height: 200px;
+}
+
+.background-fade{
+    opacity:0.5;
+}
+
+.multiLine{
+    max-width:100%;
+}
+
+.green-confirm{
+    color:#32CD32;
+}
+
+.sortCol{
+    font-weight: bold;
+    color: #1E90FF;
+}
+.sortCol:hover{
+    cursor: pointer;
+    color: #E6E6FA
+}
+
+.chartModal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+.closeImg{
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.closeImg:hover,
+.closeImg:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chartContent{
+    margin: auto;
+    display: block;
+    max-width: 95%;
+    max-height: 900px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .hideSmall {
+        display:none;
+    }
+}
+
+@media only screen and (max-width: 525px){
+    .hideMed {
+        display:none;
+    } 
+}
+
+@media only screen and (max-width: 675px){
+    .hideLarge {
+        display:none;
+    }
+}

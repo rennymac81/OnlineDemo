@@ -1,0 +1,18 @@
+﻿@{
+    var myChart = new Chart(width: 650, height: 450, theme: ChartTheme.Green)
+        .AddTitle("Incident Reports Dec 2016 and Jan 2017")
+        .AddSeries(
+            name: "December 2016",
+            xValue: new[] { "Drug", "Larceny", "Fraud", "Hit & Run", "Assault" },
+            yValues: new[] { ViewBag.DrugCount, ViewBag.LarcenyCount,
+                ViewBag.FraudCount, ViewBag.HitCount, ViewBag.AssaultCount })
+                .AddSeries(
+            name: "January 2017",
+            xValue: new[] { "Drug", "Larceny", "Fraud", "Hit & Run", "Assault" },
+            yValues: new[] { ViewBag.DrugCount2, ViewBag.LarcenyCount2,
+                ViewBag.FraudCount2, ViewBag.HitCount2, ViewBag.AssaultCount2 })
+        .AddLegend()
+        .AddTitle("Analysis: Larceny and Assault higher in Dec due to holiday and an increase in consumer activity")
+        .Write();
+    // .Save("~/Content/chartImage1.jpg");
+}

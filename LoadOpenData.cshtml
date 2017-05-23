@@ -1,0 +1,147 @@
+﻿@model PagedList.IPagedList<OnlineDemo.Models.IncidentReports>
+@using PagedList.Mvc;
+<link href="~/Content/Styles/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="row">
+    <div class="col-md-12">
+        <button class="customBtn2" id="catchChart" href="@Url.Action("DescicriptionChartView", "Home")">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            View Chart
+        </button>
+        <hr class="compact" />
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        <span>Case&nbsp;
+                        <span class="glyphicon glyphicon-sort sortCol" id="caseNumClick" aria-hidden="true" />
+                        </span>
+                    </th>
+                    <th class="hideSmall">
+                        Reported
+                    </th>
+                    <th class="hideSmall hideMed hideLarge">
+                        Code
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th class="hideSmall hideMed">
+                        Sub Division
+                    </th>
+                    <th class="hideSmall hideMed hideLarge">
+                        Zone
+                    </th>
+                    <th class="hideSmall hideMed">
+                        Status
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CaseNumber)
+                        </td>
+                        <td class="hideSmall">
+                            @String.Format("{0:MM/dd/yyyy}", item.DateReported)
+                        </td>
+                        <td class="hideSmall hideMed hideLarge">
+                            @Html.DisplayFor(modelItem => item.OffenseCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Offense)
+                        </td>
+                        <td class="hideSmall hideMed">
+                            @Html.DisplayFor(modelItem => item.SubDiv)
+                        </td>
+                        <td class="hideSmall hideMed hideLarge">
+                            @Html.DisplayFor(modelItem => item.Zone)
+                        </td>
+                        <td class="hideSmall hideMed">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div id="myPager">
+            @Html.PagedListPager(Model, CurrentPage => Url.Action("LoadOpenData", new
+       {
+           CurrentPage,
+           SortOrder = ViewBag.
+                   CurrentSort,
+           CurrentFilter = ViewBag.CurrentFilter
+       }))
+        </div>
+
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#caseNumClick").click(function () {
+            //var $selectedID = $(this).closest("tr").children("td:eq(3)").find("#objID").val();
+            $("#loadingGifId").fadeIn("fast");
+            $sortBy = '@ViewBag.CaseNumSort';
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/LoadOpenData",
+                data: { "SortOrder": $sortBy },
+                success: function (data) {
+                    $("#loadApiData").html(data);
+                    $("#loadingGifId").fadeOut("fast");
+                }
+            });
+        });
+    });
+
+    $("#myPager").on("click", "a", function (e) {
+        //prevent action link normal functionality
+        e.preventDefault();
+
+        if ($(this).attr("href") == undefined) {
+
+            return false;
+        }
+
+        $("#loadingGifId").fadeIn("fast");
+        //ajax call index controller action
+        $sortBy = '@ViewBag.CaseNumSort';
+        $.ajax({
+            url: this.href,
+            type: "GET",
+            cache: false,
+            data: { "SortOrder": $sortBy },
+            success: function (result) {
+                //load returned data inside contentFrame DIV
+                $("#loadApiData").html(result);
+                $("#loadingGifId").fadeOut("fast");
+            }
+        });
+    });
+
+    $("#catchChart").click(function (e) {
+        e.preventDefault();
+
+        $("#loadingGifId").fadeIn("fast");
+
+        $.ajax({
+            url: "/Home/DescicriptionChartView",
+            type: "GET",
+            success: function () {
+                $("#myModal").css("display", "block");
+                $("#loadingGifId").fadeOut("fast");
+            }
+        });
+    });
+
+    $("#closeImg").click(function () {
+        $("#myModal").css("display", "none");
+    });
+</script>
